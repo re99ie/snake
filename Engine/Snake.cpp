@@ -44,3 +44,34 @@ void Snake::Segment::Draw(Board& brd_) const
 {
 	brd_.DrawCell(loc, c);
 }
+Location Snake::Segment::GetLocation() const
+{
+	return loc;
+}
+Location Snake::GetLocation(int n) const
+{
+	assert(n < nSegments);
+	return segments[n].GetLocation();
+}
+Location Snake::GetNextHeadLocation(const Location& dL) const
+{
+	Location l = segments[0].GetLocation()+dL;
+	return l;
+}
+Location Snake::GetHeadLocation() const { return segments[0].GetLocation(); }
+bool Snake::IsHeadCollided() const
+{
+	for (int i = 1; i < nSegments; i++)
+	{
+		if (segments[0].GetLocation() == segments[i].GetLocation()) { return true; }
+	}
+	return false;
+}
+bool Snake::IsInTile(const Location& loc) const
+{
+	for (int i = 0; i < nSegments; i++)
+	{
+		if (loc == segments[i].GetLocation()) { return true; }
+	}
+	return false;
+}

@@ -26,6 +26,8 @@
 #include "Board.h"
 #include <random>
 #include "Snake.h"
+#include "SpriteCodex.h"
+#include "Goal.h"
 
 class Game
 {
@@ -50,6 +52,8 @@ private:
 	std::mt19937 rng;
 	Snake snake;
 	Location dLoc = { 1,0 };
-	static constexpr int snakeMovementRatio = 60;
+	Goal goal;
+	static constexpr int snakeMovementRatio = 20;
 	int snakeMovementCounter = 0;
+	bool isGameOver = false;
 };
